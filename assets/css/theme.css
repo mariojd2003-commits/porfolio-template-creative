@@ -43,6 +43,10 @@
    But clamp() does this automatically! You just set the boundaries.
    -------------------------------------------------------------------------- */
 :root {
+
+	
+
+
 	/*
 	 * FLUID TYPOGRAPHY SCALE
 	 *
@@ -69,6 +73,7 @@
 	 *
 	 * Use these for margins, paddings, and gaps — NOT for widths!
 	 */
+	 
 	--space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);     /* 4px → 8px */
 	--space-sm: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);      /* 8px → 12px */
 	--space-md: clamp(1rem, 0.8rem + 1vw, 1.5rem);           /* 16px → 24px */
@@ -82,11 +87,11 @@
 	 * Dark theme with indigo accent. Limited palette = cohesive design.
 	 * Semantic naming (bg, text, accent) makes colors self-documenting.
 	 */
-	--color-bg: #0f0f0f;              /* Near-black background */
+	--color-bg: #15131d;              /* Near-black background */
 	--color-bg-alt: #1a1a1a;          /* Slightly lighter for depth/sections */
 	--color-text: #f5f5f5;            /* Off-white for readability (not pure white) */
-	--color-text-muted: #a0a0a0;      /* Subdued text for secondary content */
-	--color-accent: #6366f1;          /* Indigo — primary brand color */
+	--color-text-muted: #9e9ac2;      /* Subdued text for secondary content */
+	--color-accent: #3235bb;          /* Indigo — primary brand color */
 	--color-accent-hover: #818cf8;    /* Lighter indigo for hover states */
 
 	/*
