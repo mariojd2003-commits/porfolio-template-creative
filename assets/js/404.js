@@ -5,11 +5,13 @@ class DotGrid {
 
     this.dpr = window.devicePixelRatio || 1;
 
-    this.mouseX = window.innerWidth * 0.75;
-    this.mouseY = window.innerHeight * 0.35;
+    this.width = 0;
+    this.height = 0;
 
-    this.targetX = this.mouseX;
-    this.targetY = this.mouseY;
+    this.mouseX = 0;
+    this.mouseY = 0;
+    this.targetX = 0;
+    this.targetY = 0;
 
     this.baseColor = [55, 51, 68];
     this.activeColor = [82, 39, 255];
@@ -21,13 +23,21 @@ class DotGrid {
     this.mouseSmoothness = 0.08;
 
     this.resize();
+
+    this.mouseX = this.width * 0.75;
+    this.mouseY = this.height * 0.35;
+    this.targetX = this.mouseX;
+    this.targetY = this.mouseY;
+
     this.bindEvents();
     this.animate();
   }
 
   resize() {
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    const rect = this.canvasElement.getBoundingClientRect();
+
+    this.width = rect.width;
+    this.height = rect.height;
 
     this.canvasElement.width = this.width * this.dpr;
     this.canvasElement.height = this.height * this.dpr;
@@ -41,9 +51,11 @@ class DotGrid {
   bindEvents() {
     window.addEventListener("resize", () => this.resize());
 
-    window.addEventListener("mousemove", e => {
-      this.targetX = e.clientX;
-      this.targetY = e.clientY;
+    window.addEventListener("mousemove", (e) => {
+      const rect = this.canvasElement.getBoundingClientRect();
+
+      this.targetX = e.clientX - rect.left;
+      this.targetY = e.clientY - rect.top;
     });
   }
 

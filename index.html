@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta name="description" content="home page" />
+	<meta name="author" content="Mario Jiménez" />
+	
+    <title>Home page</title>
+
+	 <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+	 <meta name="theme-color" content="#5227FF" />
+	 <link rel="manifest" href="/manifest.json"> 
+
     <link rel="stylesheet" href="./assets/css/index.css">
     <script src="./assets/js/main.js" defer></script>
 	<script src="./assets/js/404.js" defer></script>
@@ -30,18 +38,22 @@
 		
 		<!-- Hero Section -->
 		<section id="hero" class="hero">
-			
+
+			<!-- 👇 Wrapper SOLO para el fondo -->
+	<div class="hero-canvas">
+		<canvas id="grid"></canvas>
+	</div>
+
 			<div class="hero-bg parallax-bg"></div>
 			<div class="hero-content">
 				<h1 class="hero-title animate-on-scroll">Jane Developer</h1>
 				<p class="hero-subtitle animate-on-scroll">Front-End Engineer & UI Designer</p>
 				<a href="#projects" class="btn animate-on-scroll">View My Work</a>
 			</div>
-			<div class="scroll-indicator">
-				<span>Scroll</span>
-				<div class="scroll-arrow"></div>
-				<canvas id="grid"></canvas> <!-- 👈 AQUÍ -->
-			</div>
+			 class="scroll-indicator"
+			<span>Scroll</span>
+			<div class="scroll-arrow"></div>
+			
 		</section>
 
 		<!-- About Section -->
