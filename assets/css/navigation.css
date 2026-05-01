@@ -48,6 +48,24 @@
 	display: block;
 }
 
+/* Por defecto (dark) */
+.nav-logo-icon-light {
+	display: none;
+}
+
+/* Cuando está en light */
+[data-theme="light"] .nav-logo-icon-dark {
+	display: none;
+}
+
+[data-theme="light"] .nav-logo-icon-light {
+	display: block;
+}
+
+.nav-logo-icon {
+	transition: opacity 0.6s ease;
+}
+
 .nav-links {
 	display: flex;
 	gap: var(--space-lg);
