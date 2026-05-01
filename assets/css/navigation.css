@@ -3,26 +3,49 @@
    -------------------------------------------------------------------------- */
 .nav {
 	position: fixed;
-	top: 0;
+	top: var(--space-lg);
 	left: 0;
 	right: 0;
 	z-index: 100;
-	background: rgba(15, 15, 15, 0.9);
-	backdrop-filter: blur(10px);
-	padding: var(--space-md) 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: var(--space-md);
+	padding-inline: var(--space-lg);
+	pointer-events: none;
 }
 
 .nav-container {
+	width: min(90%, 760px);
+	min-height: 64px;
+	padding: 0 var(--space-xl);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: min(90%, 1200px);
-	margin-inline: auto;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.12);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	backdrop-filter: blur(18px);
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+	pointer-events: auto;
+	flex: 1 1 auto;
+	max-width: 760px;
 }
 
 .nav-logo {
+	display: flex;
+	align-items: center;
+	gap: var(--space-md);
 	font-size: var(--text-xl);
 	font-weight: 700;
+	text-decoration: none;
+}
+
+.nav-logo-icon {
+	width: 40px;
+	height: 40px;
+	object-fit: contain;
+	display: block;
 }
 
 .nav-links {
@@ -39,4 +62,72 @@
 .nav-links a:hover,
 .nav-links a:focus {
 	color: var(--color-accent);
+}
+
+.theme-toggle {
+	position: static;
+	flex: 0 0 auto;
+
+	width: 64px;
+	height: 64px;
+	border-radius: 999px;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	background: rgba(255, 255, 255, 0.12);
+	backdrop-filter: blur(18px);
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	pointer-events: auto;
+	transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+	transform: translateY(-2px);
+}
+
+.theme-toggle-dot {
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background: #000000;
+	transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* En modo claro, el círculo se vuelve blanco */
+[data-theme="light"] .theme-toggle-dot {
+	background: #ffffff;
+}
+
+@media (max-width: 900px) {
+	.nav-container {
+		flex-wrap: wrap;
+		row-gap: var(--space-sm);
+		width: min(82%, 620px);
+		padding: var(--space-sm) var(--space-lg);
+		border-radius: 32px;
+		justify-content: center;
+	}
+
+	.nav-logo {
+		width: 100%;
+		justify-content: center;
+		gap: var(--space-sm);
+	}
+
+	.nav-logo-icon {
+		width: 32px;
+		height: 32px;
+	}
+
+	.nav-links {
+		width: 100%;
+		justify-content: center;
+		gap: var(--space-md);
+	}
+
+	.nav-links a {
+		font-size: var(--text-sm);
+	}
 }

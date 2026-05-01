@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="home page" />
 	<meta name="author" content="Mario Jiménez" />
-	
+
     <title>Home page</title>
 
-	 <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+	 <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml" />
 	 <meta name="theme-color" content="#5227FF" />
 	 <link rel="manifest" href="/manifest.json"> 
 
     <link rel="stylesheet" href="./assets/css/index.css">
     <script src="./assets/js/main.js" defer></script>
 	<script src="./assets/js/404.js" defer></script>
+	<script src="./assets/js/toggle.js" defer></script>
 
 </head>
 <body>
@@ -24,7 +25,11 @@
 	<!-- Navigation -->
 	<nav class="nav">
 		<div class="nav-container">
-			<a href="#" class="nav-logo">Portfolio</a>
+			<a href="#" class="nav-logo">
+      <span>Portfolio</span>
+      <img src="/assets/icons/icon.svg" alt="Logo" class="nav-logo-icon">
+    </a>
+
 			<ul class="nav-links">
 				<li><a href="#hero">Home</a></li>
 				<li><a href="#about">About</a></li>
@@ -32,6 +37,11 @@
 				<li><a href="#contact">Contact</a></li>
 			</ul>
 		</div>
+
+		<button class="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro">
+		<span class="theme-toggle-dot"></span>
+	</button>
+
 	</nav>
 
 	<main id="main">
@@ -46,13 +56,15 @@
 
 			<div class="hero-bg parallax-bg"></div>
 			<div class="hero-content">
-				<h1 class="hero-title animate-on-scroll">Jane Developer</h1>
+				<h1 class="hero-title animate-on-scroll">Mario Developer</h1>
 				<p class="hero-subtitle animate-on-scroll">Front-End Engineer & UI Designer</p>
 				<a href="#projects" class="btn animate-on-scroll">View My Work</a>
-			</div>
-			 class="scroll-indicator"
-			<span>Scroll</span>
-			<div class="scroll-arrow"></div>
+		</div>
+
+  			<div class="scroll-indicator">
+   			 <span>Scroll</span>
+   			 <div class="scroll-arrow"></div>
+ 		 </div>
 			
 		</section>
 
@@ -63,13 +75,10 @@
 				<div class="about-grid">
 					<div class="about-text animate-on-scroll">
 						<p>
-							I'm a passionate front-end developer with 5 years of experience
-							building responsive, accessible, and performant web applications.
+							I'm starting my journey as a front-end developer, learning how to build responsive and user-friendly web experiences.
 						</p>
 						<p>
-							My focus is on creating seamless user experiences through clean code
-							and thoughtful design. I believe in the power of vanilla JavaScript
-							and modern CSS to create stunning interfaces without framework bloat.
+							I’m focused on learning how to create smooth user experiences through clean code and thoughtful design. I enjoy working with vanilla JavaScript and modern CSS to build simple and effective interfaces.
 						</p>
 					</div>
 					<div class="skills-grid" data-reveal-stagger>
@@ -163,7 +172,7 @@
 	<!-- Footer -->
 	<footer class="footer">
 		<div class="container">
-			<p>&copy; 2025 Jane Developer. Built with vanilla HTML, CSS & JS.</p>
+			<p>&copy; 2025 Mario Developer. Built with vanilla HTML, CSS & JS.</p>
 			<a href="#hero" class="back-to-top" aria-label="Back to top">↑</a>
 		</div>
 	</footer>
