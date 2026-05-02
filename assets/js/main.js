@@ -338,6 +338,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	initScrollAnimations();
 	initSmoothScroll();
 	initActiveNav();
+	querySelectorAll('.animate-on-scroll').forEach((el) => {
+	singleObserver.observe(el);
+});
 
 	console.log('🚀 Grade 1 Demo: Vanilla scroll animations initialized');
 });

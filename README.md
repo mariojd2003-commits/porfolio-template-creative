@@ -2,6 +2,9 @@
 
 Encuentra aquí el proyectyo desplegado: [https://mariojd2003-commits.github.io/porfolio-template-creative/](https://mariojd2003-commits.github.io/porfolio-template-creative/)
 
+hicimos un formulario de contacto y le pedi a la IA que lo adaptase al diseño, me paso este codigo pero tenia algunas fallas en el diseño que resolvi manualmente como ponerle none al boton para que no pusiera el borde del input. También aprendi que era un resize y para que se usa y añadi a mano querySelectorAll('.animate-on-scroll').forEach((el) => {
+singleObserver.observe(el); para que se incluyera en el js
+
 el icon lo compaginamos con el nuevo modo light
 
 reformamos el componente de navegación haciendolo central mas moderno y eliminando el fondo negro, ademas pusimos el icono y planteamos una opcion reducida para que fuera responsive

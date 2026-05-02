@@ -26,6 +26,29 @@
 	background: var(--color-bg-alt);
 }
 
+.about-avatar {
+	margin-bottom: var(--space-xl);
+	display: flex;
+	justify-content: center;
+}
+
+.about-avatar img {
+	width: clamp(140px, 20vw, 200px);
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: 50%;
+
+	/* estilo acorde a tu UI */
+	background: var(--color-bg-alt);
+	border: 1px solid rgba(73, 73, 73, 0.12);
+	box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+
+	transition: transform 0.3s ease;
+}
+
+.about-avatar img:hover {
+	transform: scale(1.05);
+}
 .about-grid {
 	display: grid;
 	gap: var(--space-xl);
@@ -167,15 +190,64 @@
 /* --------------------------------------------------------------------------
    9. Contact Section
    -------------------------------------------------------------------------- */
-.contact {
-	background: var(--color-bg-alt);
-	text-align: center;
+.contact-form {
+	width: min(100%, 720px);
+	margin: var(--space-lg) auto 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--space-md);
 }
 
-.contact-content p {
-	font-size: var(--text-lg);
+.contact-form input,
+.contact-form textarea {
+	width: 100%;
+	padding: var(--space-sm) var(--space-md);
+	border-radius: 16px;
+	border: 1px solid var(--color-text-muted);
+	background: var(--color-bg-alt);
+	color: var(--color-text);
+	font: inherit;
+	outline: none;
+}
+
+.contact-form textarea {
+	grid-column: 1 / -1;
+	min-height: 140px;
+	resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
 	color: var(--color-text-muted);
-	margin-bottom: var(--space-lg);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+	border-color: var(--color-accent);
+	box-shadow: 0 0 0 3px rgba(50, 53, 187, 0.25);
+}
+
+.contact-form button {
+	grid-column: 1 / -1;
+	justify-self: center;
+	border: none;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+	.contact-form {
+		grid-template-columns: 1fr;
+		width: 100%;
+	}
+
+	.contact-form textarea,
+	.contact-form button {
+		grid-column: auto;
+	}
+
+	.contact-form button {
+		width: 100%;
+	}
 }
 
 .social-links {

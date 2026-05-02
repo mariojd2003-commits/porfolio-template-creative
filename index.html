@@ -8,7 +8,7 @@
 
     <title>Home page</title>
 
-	 <link rel="icon" href="./assets/icons/icondark.svg" type="image/svg+xml" />
+	 <link rel="icon" href="./assets/icons/favicondark.svg" type="image/svg+xml" />
 	 <meta name="theme-color" content="#5227FF" />
 	 <link rel="manifest" href="/manifest.json"> 
 
@@ -71,6 +71,11 @@
 
 		<!-- About Section -->
 		<section id="about" class="section about">
+
+			<div class="about-avatar animate-on-scroll">
+<img src="https://ik.imagekit.io/mtjg3ogqf/1000049272.jpg" alt="Imagen externa" />
+		</div>
+		
 			<div class="container">
 				<h2 class="section-title animate-on-scroll">About Me</h2>
 				<div class="about-grid">
@@ -105,6 +110,7 @@
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</section>
 
@@ -155,11 +161,22 @@
 
 		<!-- Contact Section -->
 		<section id="contact" class="section contact">
-			<div class="container">
+			<div class="container"> </div>
 				<h2 class="section-title animate-on-scroll">Get In Touch</h2>
 				<div class="contact-content animate-on-scroll">
+					<div class="contact-content animate-on-scroll">
 					<p>Interested in working together? Let's talk about your project.</p>
-					<a href="mailto:hello@example.com" class="btn btn-primary">Say Hello</a>
+
+	<form action="https://formspree.io/f/mbdwlwpj" method="POST" class="contact-form" data-reveal-stagger>
+
+	<input type="text" name="name" placeholder="Your name" required>
+	
+	<input type="email" name="email" placeholder="Your email" required>
+	
+	<textarea name="message" placeholder="Your message" required></textarea>
+	
+	<button type="submit" class="btn btn-primary">Send</button>
+	</form>
 					<div class="social-links">
 						<a href="#" aria-label="GitHub">GitHub</a>
 						<a href="#" aria-label="LinkedIn">LinkedIn</a>
