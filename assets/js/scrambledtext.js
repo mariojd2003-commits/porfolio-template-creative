@@ -1,4 +1,12 @@
+/* ==========================================================================
+   404 Page — Canvas Background + Scramble Text
+   ========================================================================== */
+
 window.addEventListener("load", () => {
+  /* --------------------------------------------------------------------------
+     Canvas setup
+     -------------------------------------------------------------------------- */
+
   const grid = document.getElementById("grid");
 
   if (grid) {
@@ -12,8 +20,8 @@ window.addEventListener("load", () => {
       grid.width = width * dpr;
       grid.height = height * dpr;
 
-      grid.style.width = width + "px";
-      grid.style.height = height + "px";
+      grid.style.width = `${width}px`;
+      grid.style.height = `${height}px`;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
@@ -29,9 +37,19 @@ window.addEventListener("load", () => {
     window.addEventListener("resize", resizeCanvas);
   }
 
+
+  /* --------------------------------------------------------------------------
+     Plugin safety check
+     -------------------------------------------------------------------------- */
+
   if (!window.gsap || !window.SplitText || !window.ScrambleTextPlugin) return;
 
   gsap.registerPlugin(SplitText, ScrambleTextPlugin);
+
+
+  /* --------------------------------------------------------------------------
+     Text selection
+     -------------------------------------------------------------------------- */
 
   const root = document.getElementById("scrambledText");
   if (!root) return;
@@ -39,10 +57,20 @@ window.addEventListener("load", () => {
   const paragraph = root.querySelectorAll("p, h2");
   if (!paragraph) return;
 
+
+  /* --------------------------------------------------------------------------
+     Scramble config
+     -------------------------------------------------------------------------- */
+
   const radius = 60;
   const duration = 1.6;
   const speed = 0.15;
   const scrambleChars = ".:";
+
+
+  /* --------------------------------------------------------------------------
+     Split text into words and chars
+     -------------------------------------------------------------------------- */
 
   const split = new SplitText(paragraph, {
     type: "words,chars",
@@ -52,7 +80,12 @@ window.addEventListener("load", () => {
 
   const chars = split.chars;
 
-  chars.forEach(c => {
+
+  /* --------------------------------------------------------------------------
+     Character preparation
+     -------------------------------------------------------------------------- */
+
+  chars.forEach((c) => {
     const original = c.textContent;
 
     gsap.set(c, {
@@ -67,20 +100,26 @@ window.addEventListener("load", () => {
     const width = c.getBoundingClientRect().width;
 
     gsap.set(c, {
-      width: width,
+      width,
       minWidth: width,
       maxWidth: width
     });
   });
 
+
+  /* --------------------------------------------------------------------------
+     Pointer interaction
+     -------------------------------------------------------------------------- */
+
   let lastTrigger = 0;
 
-  root.addEventListener("pointermove", e => {
+  root.addEventListener("pointermove", (e) => {
     const now = performance.now();
+
     if (now - lastTrigger < 30) return;
     lastTrigger = now;
 
-    chars.forEach(c => {
+    chars.forEach((c) => {
       if (c.classList.contains("no-scramble")) return;
 
       const rect = c.getBoundingClientRect();

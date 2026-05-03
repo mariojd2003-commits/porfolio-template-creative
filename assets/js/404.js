@@ -1,5 +1,12 @@
+/* ==========================================================================
+   DotGrid — Interactive Canvas Background
+   ========================================================================== */
+
 class DotGrid {
   constructor(container = "grid") {
+    /* ----------------------------------------------------------------------
+       Canvas setup
+       ---------------------------------------------------------------------- */
     this.canvasElement = document.getElementById(container);
     this.ctx = this.canvasElement.getContext("2d", { alpha: true });
 
@@ -8,11 +15,17 @@ class DotGrid {
     this.width = 0;
     this.height = 0;
 
+    /* ----------------------------------------------------------------------
+       Mouse state
+       ---------------------------------------------------------------------- */
     this.mouseX = 0;
     this.mouseY = 0;
     this.targetX = 0;
     this.targetY = 0;
 
+    /* ----------------------------------------------------------------------
+       Visual config
+       ---------------------------------------------------------------------- */
     this.baseColor = [55, 51, 68];
     this.activeColor = [82, 39, 255];
 
@@ -22,6 +35,9 @@ class DotGrid {
     this.repulsionStrength = 16;
     this.mouseSmoothness = 0.08;
 
+    /* ----------------------------------------------------------------------
+       Init
+       ---------------------------------------------------------------------- */
     this.resize();
 
     this.mouseX = this.width * 0.75;
@@ -33,6 +49,9 @@ class DotGrid {
     this.animate();
   }
 
+  /* ==========================================================================
+     Resize canvas
+     ========================================================================== */
   resize() {
     const rect = this.canvasElement.getBoundingClientRect();
 
@@ -42,12 +61,15 @@ class DotGrid {
     this.canvasElement.width = this.width * this.dpr;
     this.canvasElement.height = this.height * this.dpr;
 
-    this.canvasElement.style.width = this.width + "px";
-    this.canvasElement.style.height = this.height + "px";
+    this.canvasElement.style.width = `${this.width}px`;
+    this.canvasElement.style.height = `${this.height}px`;
 
     this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
   }
 
+  /* ==========================================================================
+     Events
+     ========================================================================== */
   bindEvents() {
     window.addEventListener("resize", () => this.resize());
 
@@ -59,6 +81,9 @@ class DotGrid {
     });
   }
 
+  /* ==========================================================================
+     Utilities
+     ========================================================================== */
   lerp(a, b, t) {
     return a + (b - a) * t;
   }
@@ -67,32 +92,42 @@ class DotGrid {
     const r = Math.round(this.lerp(c1[0], c2[0], amount));
     const g = Math.round(this.lerp(c1[1], c2[1], amount));
     const b = Math.round(this.lerp(c1[2], c2[2], amount));
+
     return `rgb(${r}, ${g}, ${b})`;
   }
 
+  /* ==========================================================================
+     Draw frame
+     ========================================================================== */
   draw() {
     const ctx = this.ctx;
 
     ctx.clearRect(0, 0, this.width, this.height);
 
+    /* Smooth mouse movement */
     this.mouseX = this.lerp(this.mouseX, this.targetX, this.mouseSmoothness);
     this.mouseY = this.lerp(this.mouseY, this.targetY, this.mouseSmoothness);
 
+    /* Grid loop */
     for (let x = 22; x < this.width; x += this.gap) {
       for (let y = 14; y < this.height; y += this.gap) {
+
         const dx = x - this.mouseX;
         const dy = y - this.mouseY;
         const dist = Math.sqrt(dx * dx + dy * dy) || 1;
 
+        /* Influence */
         const influence = Math.max(0, 1 - dist / this.proximity);
         const eased = influence * influence * (3 - 2 * influence);
 
+        /* Repulsion */
         const forceX = (dx / dist) * eased * this.repulsionStrength;
         const forceY = (dy / dist) * eased * this.repulsionStrength;
 
         const finalX = x + forceX;
         const finalY = y + forceY;
 
+        /* Visuals */
         const dotRadius = this.dotSize + eased * 1.2;
         const alpha = 0.45 + eased * 0.55;
 
@@ -107,11 +142,19 @@ class DotGrid {
     ctx.globalAlpha = 1;
   }
 
+  /* ==========================================================================
+     Animation loop
+     ========================================================================== */
   animate() {
     this.draw();
     requestAnimationFrame(() => this.animate());
   }
 }
+
+
+/* ==========================================================================
+   Init
+   ========================================================================== */
 
 window.addEventListener("load", () => {
   const canvas = document.getElementById("grid");
